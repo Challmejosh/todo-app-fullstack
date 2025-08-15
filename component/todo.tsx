@@ -10,12 +10,13 @@ export interface Todo {
 }
 
 export default function TodoApp() {
+  const url = process.env.NEXT_PUBLIC_BACKEND
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingText, setEditingText] = useState<string>('');
   const fetchTodos = async ()=>{
-    const allTodos = await fetch("http://localhost:3000/todos")
+    const allTodos = await fetch(`${url}/todos`)
     const data = await allTodos.json()
     setTodos(data)
   }
@@ -29,7 +30,7 @@ export default function TodoApp() {
         text: inputValue.trim(),
         completed: false
       };
-      const res = await fetch("http://localhost:3000/todos",{
+      const res = await fetch(String(url),{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
@@ -45,7 +46,7 @@ export default function TodoApp() {
     }
   };
   const patchTodo = async (todo:Todo)=>{
-    const res = await fetch(`http://localhost:3000/todos/${todo.id}`,{
+    const res = await fetch(`${url}/${todo.id}`,{
       method: "PATCH",
       headers:{
         "Content-Type":"application/json"
@@ -64,14 +65,14 @@ export default function TodoApp() {
   };
 
   const deleteTodo = async (id: number)=> {
-    // const deleteTOD = await fetch("http://localhost:3000/todos",{
+    // const deleteTOD = await fetch("${url}",{
     //   method:"DELETE",
     //   headers:{
     //     "Content-Type":"application/json"
     //   },
     //   body:JSON.stringify({id})
     // })
-    const delTodo = await fetch(`http://localhost:3000/todos/${id}`,{
+    const delTodo = await fetch(`${url}/${id}`,{
       method:"DELETE",
     })
 
