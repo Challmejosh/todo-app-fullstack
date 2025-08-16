@@ -11,10 +11,10 @@ import { useQuery } from '@tanstack/react-query';
 
 const Page = () => {
     const { id } = useParams();
-    const url = process.env.NEXT_PUBLIC_BACKEND_API ?? "http://localhost:3000"
+    const url = process.env.NEXT_PUBLIC_BACKEND_API 
     const [todo, setTodo] = useState<Todo | null>(null);
     const fetchTodo = async () => {
-        const res = await fetch(`${url}/todos/${id}`);
+        const res = await fetch(`${url}/api/todos/${id}`);
         if (!res.ok) throw new Error('failed to fetch');
         const data = await res.json();
         return data

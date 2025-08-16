@@ -2,13 +2,13 @@ import { sb } from "@/libs/supabase";
 // PATCH handler
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
-): Promise<Response> {
+ { params }: { params: Promise<{ id: string }> }
+) {
   try {
     // if(!request.url) return new Response(JSON.stringify({message:"api url not found"}))
     // const { searchParams } = new URL(request.url||String(process.env.BACKEND_API));
     // const id = searchParams.get('id');
-    const { id } = params
+    const { id } = await params
     if (!id) {
       return new Response(
         JSON.stringify({ error: "Todo 'id' is required to update." }),
@@ -38,13 +38,13 @@ export async function PATCH(
 // GET handler
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
-): Promise<Response> {
+    { params }: { params: Promise<{ id: string }> }
+) {
   try {
     // if(!request.url) return new Response(JSON.stringify({message:"api url not found"}))
     // const { searchParams } = new URL(request.url||String(process.env.BACKEND_API));
     // const id = searchParams.get('id');
-    const { id } = params
+    const { id } = await params
     if (!id) {
       return new Response(JSON.stringify({ error: "Todo 'id' is required to fetch." }), { status: 400 });
     }
@@ -61,13 +61,13 @@ export async function GET(
 // DELETE handler
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
-): Promise<Response> {
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     // if(!request.url) return new Response(JSON.stringify({message:"api url not found"}))
     // const { searchParams } = new URL(request.url||String(process.env.BACKEND_API));
     // const id = searchParams.get('id');
-    const { id } = params
+    const { id } = await params
     if (!id) {
       return new Response(
         JSON.stringify({ error: "Todo 'id' is required to delete." }),
