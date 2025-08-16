@@ -73,7 +73,7 @@ export default function TodoApp() {
     }
   };
   const patchFetch = async (todo:Todo)=>{
-    const res = await fetch(`${url}/todos/${todo.id}?id=${todo.id}`,{
+    const res = await fetch(`${url}/todos/${todo.id}`,{
       method: "PATCH",
       headers:{
         "Content-Type":"application/json"
@@ -112,7 +112,7 @@ export default function TodoApp() {
     await patchTodo(updatedTodo)
   };
   const deleteFetch = async (id: number)=>{
-     const delTodo = await fetch(`${url}/todos/${id}?id=${id}`,{
+     const delTodo = await fetch(`${url}/todos/${id}`,{
       method:"DELETE",
     })
     if(!delTodo.ok) throw new Error("failed to delete todo")
