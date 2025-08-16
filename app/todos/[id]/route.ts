@@ -4,7 +4,7 @@ export async function PATCH(
   request: Request,
 ): Promise<Response> {
   try {
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = new URL(request.url, 'http://localhost');
     const id = searchParams.get('id');
     if (!id) {
       return new Response(
@@ -37,7 +37,7 @@ export async function GET(
   request: Request,
 ): Promise<Response> {
   try {
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = new URL(request.url, 'http://localhost');
     const id = searchParams.get('id');
     if (!id) {
       return new Response(JSON.stringify({ error: "Todo 'id' is required to fetch." }), { status: 400 });
@@ -57,7 +57,7 @@ export async function DELETE(
   request: Request,
 ): Promise<Response> {
   try {
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = new URL(request.url, 'http://localhost');
     const id = searchParams.get('id');
     if (!id) {
       return new Response(
