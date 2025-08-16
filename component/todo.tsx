@@ -13,7 +13,7 @@ export interface Todo {
 }
 
 export default function TodoApp() {
-  const url = process.env.NEXT_PUBLIC_BACKEND ?? "http://localhost:3000"
+  const url = process.env.NEXT_PUBLIC_BACKEND_API ?? "http://localhost:3000"
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [editingId, setEditingId] = useState<number | null>(null);
