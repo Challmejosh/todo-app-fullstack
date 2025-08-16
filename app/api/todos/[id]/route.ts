@@ -5,9 +5,6 @@ export async function PATCH(
  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // if(!request.url) return new Response(JSON.stringify({message:"api url not found"}))
-    // const { searchParams } = new URL(request.url||String(process.env.BACKEND_API));
-    // const id = searchParams.get('id');
     const { id } = await params
     if (!id) {
       return new Response(
@@ -37,13 +34,10 @@ export async function PATCH(
 
 // GET handler
 export async function GET(
-  request: Request,
+//   request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // if(!request.url) return new Response(JSON.stringify({message:"api url not found"}))
-    // const { searchParams } = new URL(request.url||String(process.env.BACKEND_API));
-    // const id = searchParams.get('id');
     const { id } = await params
     if (!id) {
       return new Response(JSON.stringify({ error: "Todo 'id' is required to fetch." }), { status: 400 });
@@ -60,13 +54,10 @@ export async function GET(
 
 // DELETE handler
 export async function DELETE(
-  request: Request,
+//   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // if(!request.url) return new Response(JSON.stringify({message:"api url not found"}))
-    // const { searchParams } = new URL(request.url||String(process.env.BACKEND_API));
-    // const id = searchParams.get('id');
     const { id } = await params
     if (!id) {
       return new Response(
