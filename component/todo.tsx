@@ -13,7 +13,7 @@ export interface Todo {
 }
 
 export default function TodoApp() {
-  // const url = process.env.NEXT_PUBLIC_BACKEND
+  const url = process.env.NEXT_PUBLIC_BACKEND
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -21,8 +21,7 @@ export default function TodoApp() {
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [patchingId, setPatchingId] = useState<number | null>(null);
   const fetchTodos = async ()=>{
-    const allTodos = await fetch(`/todos`)
-    // const allTodos = await fetch(`${url}/todos`)
+    const allTodos = await fetch(`${url}/todos`)
     if(!allTodos.ok){
       throw new Error("failed to fetch")
     }
@@ -40,8 +39,7 @@ export default function TodoApp() {
     }
   },[data])
   const addFetch = async (newTodo: { text: string; completed: boolean })=>{
-     const res = await fetch(String("/todos"),{
-    //  const res = await fetch(String(url+"/todos"),{
+     const res = await fetch(String(url+"/todos"),{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
@@ -75,8 +73,7 @@ export default function TodoApp() {
     }
   };
   const patchFetch = async (todo:Todo)=>{
-    const res = await fetch(`/todos/${todo.id}?id=${todo.id}`,{
-    // const res = await fetch(`${url}/todos/${todo.id}?id=${todo.id}`,{
+    const res = await fetch(`${url}/todos/${todo.id}?id=${todo.id}`,{
       method: "PATCH",
       headers:{
         "Content-Type":"application/json"
@@ -115,8 +112,7 @@ export default function TodoApp() {
     await patchTodo(updatedTodo)
   };
   const deleteFetch = async (id: number)=>{
-     const delTodo = await fetch(`/todos/${id}?id=${id}`,{
-    //  const delTodo = await fetch(`${url}/todos/${id}?id=${id}`,{
+     const delTodo = await fetch(`${url}/todos/${id}?id=${id}`,{
       method:"DELETE",
     })
     if(!delTodo.ok) throw new Error("failed to delete todo")

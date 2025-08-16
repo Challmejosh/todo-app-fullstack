@@ -11,11 +11,10 @@ import { useQuery } from '@tanstack/react-query';
 
 const Page = () => {
     const { id } = useParams();
-    // const url = process.env.NEXT_PUBLIC_BACKEND;
+    const url = process.env.NEXT_PUBLIC_BACKEND;
     const [todo, setTodo] = useState<Todo | null>(null);
     const fetchTodo = async () => {
-        const res = await fetch(`/todos/${id}?id=${id}`);
-        // const res = await fetch(`${url}/todos/${id}?id=${id}`);
+        const res = await fetch(`${url}/todos/${id}?id=${id}`);
         if (!res.ok) throw new Error('failed to fetch');
         const data = await res.json();
         return data
