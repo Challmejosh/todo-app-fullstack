@@ -34,7 +34,7 @@ export async function PATCH(
 
 // GET handler
 export async function GET(
-//   request: Request,
+  request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
   try {
@@ -54,7 +54,7 @@ export async function GET(
 
 // DELETE handler
 export async function DELETE(
-//   request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
