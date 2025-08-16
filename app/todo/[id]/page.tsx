@@ -11,7 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const Page = () => {
     const { id } = useParams();
-    const url = process.env.NEXT_PUBLIC_BACKEND_API 
+    const url = String(process.env.NEXT_PUBLIC_BACKEND_API )
     const [todo, setTodo] = useState<Todo | null>(null);
     const fetchTodo = async () => {
         const res = await fetch(`${url}/api/todos/${id}`);
