@@ -1,5 +1,4 @@
 import { sb } from "@/libs/supabase"
-import { NextRequest } from "next/server"
 
 
 export const GET = async ()=>{
@@ -13,18 +12,18 @@ export const GET = async ()=>{
 }
 
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
-    const { text, id, completed = false } = await request.json();
+    const { text, completed = false } = await request.json();
 
-    if (!text || !id) {
+    if (!text) {
       return new Response(
         JSON.stringify({ error: "Both 'text' and 'id' are required." }),
         { status: 400 }
       );
     }
 
-    const { data, error } = await sb.from("Todos").insert([{ id, text, completed }]).select().single();
+    const { data, error } = await sb.from("Todos").insert([{ text, completed }]).select().single();
 
     if (error) {
       return new Response(JSON.stringify({ error: error.message }), {
